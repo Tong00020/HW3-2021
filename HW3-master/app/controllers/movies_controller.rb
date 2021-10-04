@@ -21,6 +21,8 @@ class MoviesController < ApplicationController
         session[x]=params[x]
       end
     end
+    @all_ratings = Movie.get_ratings
+    params[:ratings].nil? ? @selected_rating = @all_ratings : selected_ratings = params[:ratings].keys
 
     #@movies = Movie.all #first version
     sort = params[:sort] || session[:sort]
@@ -64,6 +66,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    
     @movie = Movie.find params[:id]
   end
 
